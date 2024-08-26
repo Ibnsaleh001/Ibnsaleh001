@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Calculator</title>
+	<link rel="stylesheet" type="text/css">
+</head>
+<style>
+  body{
+   
+  background: url("content://com.android.providers.media.documents/document/image%3A23945") no-repeat;
+  background-position:center;
+        margin:auto;
+    }
+    .calculator {
+    position:absolute;
+    
+	width: 210px;
+	margin:28px;
+	background-color: black ;
+	padding:19.8px;
+	border: 3px solid silver;
+	border-radius: 50px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.buttons {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-gap: 10px;
+}
+
+button {
+	width: 100%;
+	height: 50px;
+	background-color: #2465;
+	color: #fff;
+	border: none;
+	border-radius: 50px ;
+	margin-top:9px;
+}
+
+button:hover {
+	background-color: #2465;
+}
+
+#display {
+	width: 100%;
+	height: 40px;
+	background-color: black;
+	color:white;
+	font-size:30px;
+	border: none;
+	border-radius: 5px;
+	padding: 10px;
+	text-align: right;
+	margin-top:2em;
+}
+#txt{
+    
+    color:white;
+    text-align:center;
+    font-size:8px;
+    text-decoration:none;
+    border:none;
+    margin-top:2px;
+    margin-left:-1em;
+}
+</style>
+<body>
+    
+    <div class="calculator">
+	   <p id="txt"><strong id="clock" >00:00</Strong><strong style="margin-left:14em;">✈️</strong><strong style="margin-left:1em;">🔋</strong></p>
+		<input type="text" id="display" placeholder="00"disabled>
+		<div class="buttons">
+			<button style="background:silver; color:black;" onclick="clearDisplay()">C</button>
+			<button style="background:silver; color:black;" onclick="deleteLast()">DEL</button>
+			<button style="background:silver; color:black;" onclick="appendValue('%')">%</button>
+			<button style="background:orange;" onclick="appendValue('-')">-</button>
+			<button onclick="appendValue('1')">1</button>
+			
+			<button onclick="appendValue('2')">2</button>
+			<button onclick="appendValue('3')">3</button>
+			<button style="background:orange ;" onclick="appendValue('*')">*</button>
+			<button onclick="appendValue('4')">4</button>
+			<button onclick="appendValue('5')">5</button>
+			<button onclick="appendValue('6')">6</button>
+			<button style="background:orange;" onclick="appendValue('/')">/</button>
+			<button onclick="appendValue('7')">7</button>
+			<button onclick="appendValue('8')">8</button>
+			<button onclick="appendValue('9')">9</button>
+
+		<button style="background:orange;"onclick="appendValue('+')">+</button>
+			
+			<button style="border-right:1px #2365 solid;width:50px;" onclick="appendValue('0')">0</button>
+			<button></button>
+			<button  onclick="appendValue('.')">.</button>
+			    
+						<button style="background :orange;"onclick="calculate()">=</button>
+						
+		</div></br>
+		<hr style="width:50px;"/>
+	</div>
+
+	<script>
+	    let displayValue = '';
+
+function appendValue(value) {
+	displayValue += value;
+	document.getElementById('display').value = displayValue;
+}
+
+function clearDisplay() {
+	displayValue = '';
+	document.getElementById('display').value = displayValue;
+}
+
+function deleteLast() {
+	displayValue = displayValue.slice(0, -1);
+	document.getElementById('display').value = displayValue;
+}
+
+function calculate() {
+	try {
+		displayValue = eval(displayValue);
+		document.getElementById('display').value = displayValue;
+	} catch (error) {
+		document.getElementById('display').value = 'Error🚫';
+	}
+}
+
+
+	</script>
+</body>
+</html>
